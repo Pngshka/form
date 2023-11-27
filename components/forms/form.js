@@ -5,13 +5,25 @@ const FormComponent = () => {
 
   const handleSubmit = async (e) => {
     var button = document.getElementById('myButton');
-    // Делаем кнопку неактивной
     button.disabled = true;
+    console.log(button.disabled)
 
     validateForm();
 
     e.preventDefault();
-    //    debugger
+
+    setTimeout(async () => {
+      await proverka();
+      button.disabled = false;
+      console.log(button.disabled)
+    }, 3000);
+  };
+
+  const handleInputChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  async function proverka(){
     try {
       const response = await fetch('/api/form', {
         method: 'POST',
@@ -25,13 +37,7 @@ const FormComponent = () => {
     } catch (error) {
       console.error('Ошибка при отправке формы:', error);
     }
-
-    button.disabled = false;
-  };
-
-  const handleInputChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  }
 
   return (
     <form onSubmit={handleSubmit}>

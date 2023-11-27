@@ -54,3 +54,17 @@ export function password(getValue) {
     }
   }
 }
+
+export function name() {
+  return {
+    validate(name) {
+      var namePattern = /^[а-яА-ЯёЁ]+$/;
+
+      //console.log('------------------' + validate(name))
+      if (!name.match(namePattern)) {
+        //alert('Имя должно содержать только кириллические символы');
+        return PHONE;
+      } else return true;
+    }
+  }
+}

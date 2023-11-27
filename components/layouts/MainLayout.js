@@ -5,6 +5,8 @@ import {header} from "../../constants/copyright";
 import {node} from "prop-types";
 import ModalProvider from "../baseComponents/controllers/modalController/ModalProvider";
 import Preloader from "../baseComponents/gui/preloader/Preloader";
+import CastomForm from '../login/CastomForm';
+import SignUp from '../login/SignUp';
 
 export default function MainLayout({children}) {
   return (
@@ -18,6 +20,7 @@ export default function MainLayout({children}) {
       <div className={'main-container'}>
         <CustomHeader {...header}/>
         <div className={'content-wrapper'}>{children}</div>
+        <CastomForm { ...children }/>
         <Footer/>
       </div>
     </ModalProvider>

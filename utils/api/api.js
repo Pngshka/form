@@ -1,6 +1,6 @@
 import axios from "axios";
 import ApiError from "./ApiError";
-const prefix = "/api/v1";
+const prefix = "/api/";
 
 function isAbsolute(str) {
 	return /^(\w+:)?\/\//.test(str);

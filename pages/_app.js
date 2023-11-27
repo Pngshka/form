@@ -27,7 +27,7 @@ const MyApp = ({Component, pageProps}) => {
       <MainLayout>
         <Component {...pageProps} />
 
-        <FormComponent/>
+        
       </MainLayout>
     </Provider>
   );

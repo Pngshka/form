@@ -4,6 +4,7 @@ import LabelInput from "../form/LabelInput";
 
 
 export default function Input({label, comp, ...rest}) {
+  console.log("fsdfsdfdfs" + {...rest})
   return (
     <LabelInput
       labelProps={{className: classNames("input", comp, Object.values(rest?.error?.props?.errors[rest.name] || {}).length ? "input__error" : "")}}

@@ -31,6 +31,10 @@ export function logout() {
     .then(saveAuth)
 }
 
+export function test(data) {
+  return new Promise(() => console.log(data))
+}
+
 function saveAuth(data) {
   _storage.save(data?.profile);
 
