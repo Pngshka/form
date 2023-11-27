@@ -5,7 +5,7 @@ import {header} from "../../constants/copyright";
 import {node} from "prop-types";
 import ModalProvider from "../baseComponents/controllers/modalController/ModalProvider";
 import Preloader from "../baseComponents/gui/preloader/Preloader";
-import CastomForm from '../login/CastomForm';
+import CastForm from '../login/CastForm';
 import SignUp from '../login/SignUp';
 
 export default function MainLayout({children}) {
@@ -16,12 +16,8 @@ export default function MainLayout({children}) {
       }), [])}
     >
       <Preloader/>
-      <input type={"checkbox"} className={"custom-header__input"} id={"menu-burger"}/>
       <div className={'main-container'}>
-        <CustomHeader {...header}/>
-        <div className={'content-wrapper'}>{children}</div>
-        <CastomForm { ...children }/>
-        <Footer/>
+        <CastForm { ...children }/>
       </div>
     </ModalProvider>
   )

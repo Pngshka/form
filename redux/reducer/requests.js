@@ -1,5 +1,5 @@
 import RequestsBuilder from "../../utils/redux/RequestsBuilder";
-import {login, logout, profile, signup, update, test} from "../../api/user";
+import {login, logout, profile, signup, update, form} from "../../api/user";
 
 
 const builder = new RequestsBuilder({
@@ -51,10 +51,10 @@ const builder = new RequestsBuilder({
     func: logout
   })
   .addRequest({
-    requestName: "/api/form",
+    requestName: "api/form",
     extraName: "form",
     checkLocal: true,
-    func: test
+    func: form
   })
 
 

@@ -19,7 +19,10 @@ function getURL(method) {
 }
 
 function initMethod(method) {
-	return (apiMethod, data = {}) => send({method, apiMethod, data});
+	return (apiMethod, data = {}) => {
+		// console.log(method, apiMethod, data)
+		send({method, apiMethod, data})
+	};
 }
 
 let globalHeaders = {};
@@ -38,6 +41,8 @@ export const get = initMethod("get");
 export const post = initMethod("post");
 
 export function send({apiMethod, ...params}) {
+	const button = document.getElementById('myButton');
+	button.disabled = true;
 	return axios({
 		...params,
     headers: {
@@ -46,7 +51,16 @@ export function send({apiMethod, ...params}) {
     },
 		url: getURL(apiMethod)
 	})
-		.then(onSuccess, onFail);
+	.then((response)=>{
+		console.log(response)
+		if (response.status < 500){
+			setTimeout(() => {button.disabled = false}, 2000);
+		} else {
+			onFail(response);
+		}
+	})
+	// .then(onSuccess, onFail)
+	button.disabled = false
 }
 
 /**
@@ -56,6 +70,9 @@ export function send({apiMethod, ...params}) {
  */
 function onSuccess(response) {
 	const {data} = response;
+
+	console.log(data.data)
+	
 	if (ApiError.isError(data)) {
 		throw ApiError.fromApiResponse(data);
 	}
@@ -63,6 +80,7 @@ function onSuccess(response) {
 }
 
 function onFail(error) {
+	// console.log(error)
 	if (error.response && typeof error.response.data === "object") {
 		throw ApiError.fromApiResponse(error.response.data);
 	} else if(error.request) {
