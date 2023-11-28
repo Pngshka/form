@@ -126,6 +126,7 @@ const Form = forwardRef(
       onSubmit: onSubmit ? handleSubmit(onSubmit) : handleSubmit(() => {
       })
     };
+
     return React.isValidElement(as)
       ? React.cloneElement(as, props)
       : React.createElement(as, props);
