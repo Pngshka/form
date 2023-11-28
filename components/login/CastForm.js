@@ -16,6 +16,8 @@ export default function CastForm() {
     requests.thunks.form,
   ]);
 
+  
+
   return (
     <Form form={form} onSubmit={onSubmit} className="login">
       <LabelInput

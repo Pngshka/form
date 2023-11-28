@@ -51,16 +51,18 @@ export function send({apiMethod, ...params}) {
     },
 		url: getURL(apiMethod)
 	})
-	.then((response)=>{
-		console.log(response)
-		if (response.status < 500){
-			setTimeout(() => {button.disabled = false}, 2000);
-		} else {
-			onFail(response);
-		}
+	// .then((response)=>{
+	// 	console.log(response)
+	// 	if (response.status < 500){
+	// 		setTimeout(() => {button.disabled = false}, 2000);
+	// 	} else {
+	// 		onFail(response);
+	// 	}
+	// })
+	.then(onSuccess, onFail)
+	.then(()=>{	
+		setTimeout(()=>{button.disabled = false}, 3000)
 	})
-	// .then(onSuccess, onFail)
-	button.disabled = false
 }
 
 /**
@@ -71,7 +73,7 @@ export function send({apiMethod, ...params}) {
 function onSuccess(response) {
 	const {data} = response;
 
-	console.log(data.data)
+	console.log(response)
 	
 	if (ApiError.isError(data)) {
 		throw ApiError.fromApiResponse(data);

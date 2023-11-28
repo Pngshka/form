@@ -1,3 +1,63 @@
 .login {
     margin-left: 20px;
 }
+
+* {
+    box-sizing: border-box;
+    font-family: 'Golos', sans-serif;
+}
+
+body {
+    background-color: #E7E7ED;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+div {
+    font-size: 14px;
+}
+
+
+form {
+    margin: 25vh;
+    padding: 10vh;
+
+    display: grid;
+    justify-content: center;
+    text-align: center;
+
+    /*width: 30vw;*/
+
+    background-color: #FFFF;
+
+    box-shadow: 3.21847px 8.04618px 56.3233px rgba(0, 0, 0, 0.02);
+    border-radius: 30px;
+}
+
+input {
+    border-radius: 16.0924px;
+    padding: 2vh;
+
+    margin-bottom: 20px;
+    background-color: #F5F5F5;
+    border: none;
+}
+
+button {
+    font-size: 20px;
+    display: block;
+
+    padding: 0 60px 0 60px;
+    margin: 35px 0 0 60px;
+    line-height: 50px;
+
+    background: #00C900;
+    border: none;
+    color: #FFFF;
+    border-radius: 1000px;
+}
+
+div {
+    display: inline-block;
+}
