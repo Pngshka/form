@@ -62,7 +62,6 @@ export function name() {
     validate(name) {
       var namePattern = /^[а-яА-ЯёЁ]+$/;
 
-      //console.log('------------------' + validate(name))
       if (!name.match(namePattern)) {
         return NAME;
       } else return true;
@@ -81,10 +80,3 @@ export function message() {
     }
   }
 }
-
-/*
-Задача:
-Надо сделать тестовый метод api в nextjs, а также организовать форму, которая отправляет в данный метод данные с полями
-
-отправка данных должно быть реализовано через slice requests
-*/

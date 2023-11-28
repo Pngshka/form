@@ -7,6 +7,7 @@ const builder = new RequestsBuilder({
   initialState: {},
   reducers: {
     clearError(state, {payload: {field, requestName} = {}}) {
+      // debugger
       if (!field) return;
       requestName = builder.getRequestByName(requestName);
 

@@ -22,6 +22,7 @@ export default function Input({
                               }) {
   const inputProps = rules ? register(name, rules) : register(name);
 
+debugger
 
   const props = {
     name,

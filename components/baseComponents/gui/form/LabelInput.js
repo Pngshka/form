@@ -3,7 +3,7 @@ import * as PropTypes from "prop-types";
 import Input from "./Input";
 
 export default function LabelInput({ label, labelAs, labelTextProps, labelProps, ...rest }) {
-  // console.log({...rest});
+  // console.log({...rest} );
 
   labelTextProps = { ...labelTextProps, label };
   if(typeof labelAs === "string")

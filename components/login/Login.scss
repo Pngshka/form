@@ -58,6 +58,14 @@ button {
     border-radius: 1000px;
 }
 
+button:hover{
+    background: #00B909;
+}
+
+button:disabled:hover{
+    background: #00C900;
+}
+
 div {
     display: inline-block;
 }

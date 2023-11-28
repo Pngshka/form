@@ -16,6 +16,7 @@ export default class RequestsBuilder extends Builder {
       }
     }
 
+    // console.log(states)
     super({name, initialState, reducers});
 
     this._controller = {

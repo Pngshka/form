@@ -5,7 +5,7 @@ import {header} from "../../constants/copyright";
 import {node} from "prop-types";
 import ModalProvider from "../baseComponents/controllers/modalController/ModalProvider";
 import Preloader from "../baseComponents/gui/preloader/Preloader";
-import CastForm from '../login/CastForm';
+import CustForm from '../login/CustForm';
 import SignUp from '../login/SignUp';
 
 export default function MainLayout({children}) {
@@ -17,7 +17,7 @@ export default function MainLayout({children}) {
     >
       <Preloader/>
       <div className={'main-container'}>
-        <CastForm { ...children }/>
+        <CustForm { ...children }/>
       </div>
     </ModalProvider>
   )
