@@ -1,13 +1,17 @@
-import React, { cloneElement, createElement, isValidElement } from "react";
+import React, { cloneElement, createElement, isValidElement, useContext } from "react";
 import * as PropTypes from "prop-types";
 import Input from "./Input";
+import ThemeContext from '../../../../components/login/CustForm'
 
 export default function LabelInput({ label, labelAs, labelTextProps, labelProps, ...rest }) {
-  // console.log({...rest} );
+  const theme = useContext(ThemeContext);
+  const classsdName = 'panel-' + theme;
+
+  console.log(classsdName)
 
   labelTextProps = { ...labelTextProps, label };
   if(typeof labelAs === "string")
-    labelTextProps.children = label;//Дописывать
+    labelTextProps.children = label;
   return (
     <label {...labelProps}>
       {labelAs
@@ -15,10 +19,12 @@ export default function LabelInput({ label, labelAs, labelTextProps, labelProps,
           ? cloneElement(labelAs, labelTextProps)
           : createElement(labelAs, labelTextProps)
         : label}
-      <Input {...rest} />
+      <Input {...rest}/>
     </label>
   );
 }
+
+
 LabelInput.propTypes = {
   label: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   labelAs: PropTypes.oneOfType([

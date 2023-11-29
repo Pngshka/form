@@ -6,7 +6,7 @@ import {ErrorMessage} from "@hookform/error-message";
 import {password} from "../../../../constants/form";
 
 const renderMultipleErrors = ({message, messages}) => {
-  messages = messages || [message]; //todo: сделать через if?
+  messages = messages || [message]; 
   return (
     messages &&
     Object.entries(messages).map(([type, message]) => (
@@ -119,6 +119,7 @@ const Form = forwardRef(
     if (isGlobalErrors)
       newChildren = addGlobalErrors(newChildren, errors, externalErrors.errors);
 
+    console.log(newChildren)
     const props = {
       ...rest,
       slots: getSlots(),
@@ -127,15 +128,19 @@ const Form = forwardRef(
       })
     };
 
+
     return React.isValidElement(as)
       ? React.cloneElement(as, props)
       : React.createElement(as, props);
 
     function getSlots() {
+      debugger
       if (!slots) return null;
+
       return Object.keys(slots).reduce((res, key) => {
         res[key] = React.Children.map(slots[key], initInput);
         return res;
+        //Children от Children
       }, {});
     }
   }
@@ -166,9 +171,7 @@ Form.propTypes = {
   ]),
   isLocalErrors: PropTypes.bool,
   isGlobalErrors: PropTypes.bool,
-  /**
-   *  параметры хука useForm для react-hook-form
-   */
+
   useFormProps: PropTypes.object,
   onSubmit: PropTypes.func,
   onError: PropTypes.func,
