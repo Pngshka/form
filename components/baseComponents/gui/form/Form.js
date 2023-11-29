@@ -5,6 +5,7 @@ import {useForm} from "react-hook-form";
 import {ErrorMessage} from "@hookform/error-message";
 import {password} from "../../../../constants/form";
 
+
 const renderMultipleErrors = ({message, messages}) => {
   messages = messages || [message]; 
   return (
@@ -41,7 +42,6 @@ const Form = forwardRef(
       formState: {errors}, setError,
       register, watch, control, handleSubmit, trigger, reset, formState, getValues
     } = form || formController;
-
     const result = watch();
 
     useDeepCompareEffect(() => {
@@ -119,7 +119,6 @@ const Form = forwardRef(
     if (isGlobalErrors)
       newChildren = addGlobalErrors(newChildren, errors, externalErrors.errors);
 
-    console.log(newChildren)
     const props = {
       ...rest,
       slots: getSlots(),
@@ -134,7 +133,6 @@ const Form = forwardRef(
       : React.createElement(as, props);
 
     function getSlots() {
-      debugger
       if (!slots) return null;
 
       return Object.keys(slots).reduce((res, key) => {

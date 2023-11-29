@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, createContext } from "react";
+import React, { useCallback, createContext } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import Form from "../baseComponents/gui/form/Form";
@@ -17,14 +17,16 @@ export default function CustForm() {
   const requestName = action?.typePrefix ?? "";
   const dispatch = useDispatch();
   const { request } = useRequestData(requestName);
-  const clearError = useCallback(field => {
-    console.log("DISPATCH");
-    dispatch(requests.actions.clearError({
-      field,
-      requestName
-    })), [action]
-  }
-  );
+  const clearError = useCallback((field) => {
+    // console.log("DISPATCH");
+    dispatch(
+      requests.actions.clearError({
+        field,
+        requestName,
+      })
+    ),
+      [action];
+  });
   const onSubmit = useCallback((data) => dispatch(action(data)), [action]);
 
   //console.log({...register()})
@@ -38,56 +40,61 @@ export default function CustForm() {
   //       }}
   // };
 
+  const slots = {
+    inputs: [
+      <LabelInput
+        label={<div className={"input__name"}>Name: </div>}
+        name={"name"}
+        rules={name()}
+      />,
+      <LabelInput
+        label={<div className={"input__name"}>Message: </div>}
+        name={"message"}
+        rules={message()}
+        // {...{
+        //   regiskjhgfter: {
+        //     register: (...args) => {
+        //       console.log(args[0]);
+        //       return control.register(...args);
+        //     },
+        //   },
+        // }}
+      />,
+      <LabelInput
+        label={<div className={"input__name"}>Password: </div>}
+        name={"password"}
+        rules={password()}
+        register={"password"}
+      />,
+    ],
+  };
+
   return (
     <ThemeContext.Provider value="dark">
       <Form
         form={form}
         onSubmit={onSubmit}
         className="login"
+        slots={slots}
         errors={{
           clearError,
           errors: request?.error?.fields,
         }}
-      >
-        <div>
-          <LabelInput
-            label={<div className={"input__name"}>Name: </div>}
-            name={"name"}
-            rules={name()}
-          ></LabelInput>
-          <br />
-
-          <br />
-          <LabelInput
-            label={<div className={"input__name"}>Message: </div>}
-            name={"message"}
-            rules={message()}
-            {...{
-              regiskjhgfter: {
-                register: (...args) => {
-                  console.log(args[0]);
-                  return control.register(...args);
-                }
-              }
-            }}
-          ></LabelInput>
-          <br />
-
-          <br />
-          <LabelInput
-            label={<div className={"input__name"}>Password: </div>}
-            name={"password"}
-            rules={password()}
-            register={"password"}
-          ></LabelInput>
-        </div>
-        <br />
-
-        <br />
+        as={FormWrapper}
+        >
         <button type="submit" id="myButton">
           Отправить
         </button>
       </Form>
     </ThemeContext.Provider>
+  );
+}
+
+function FormWrapper({ slots, children, ...etc }) {
+  return (
+    <form {...etc}>
+      <div>{slots.inputs}</div>
+      {children}
+    </form>
   );
 }

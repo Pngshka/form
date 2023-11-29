@@ -1,13 +1,8 @@
-import React, { cloneElement, createElement, isValidElement, useContext } from "react";
+import React, { cloneElement, createElement, isValidElement } from "react";
 import * as PropTypes from "prop-types";
 import Input from "./Input";
-import ThemeContext from '../../../../components/login/CustForm'
 
 export default function LabelInput({ label, labelAs, labelTextProps, labelProps, ...rest }) {
-  const theme = useContext(ThemeContext);
-  const classsdName = 'panel-' + theme;
-
-  console.log(classsdName)
 
   labelTextProps = { ...labelTextProps, label };
   if(typeof labelAs === "string")
